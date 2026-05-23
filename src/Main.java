@@ -6,7 +6,6 @@ ArrayList<Ogrenci> ogrenciler = new ArrayList<>();
 Ogrenci ogrenci;
 
 
-
 void main() {
 
     int tercih;
@@ -15,6 +14,7 @@ void main() {
         System.out.println("1 ) Öğrenci Ekle");
         System.out.println("2 ) Öğrencileri Listele");
         System.out.println("3 ) ismini girdiğiniz öğrenci kaydını Listele");
+        System.out.println("4 ) ismini girdiğiniz öğrenci kaydını sil");
         System.out.println("5 ) Çıkış");
 
         System.out.print("tercihiniz...:");
@@ -29,11 +29,14 @@ void main() {
             ogrencileriListele();
         } else if (tercih==3) {
             ogrenciKaydiniListele();
+        } else if (tercih==4) {
+            ogrenciKaydiSil();
         }
 
     }//end while
 
 }//end main
+
 
 void ogrenciEkle(){
 
@@ -57,7 +60,6 @@ void ogrenciEkle(){
 
     ogrenciler.add(new Ogrenci(not1,not2,not3,ogrenciIsmi));
 }//end ogrenciEkle
-
 
 
 void ogrencileriListele(){
@@ -85,7 +87,6 @@ void ogrenciKaydiniListele(){
 
     System.out.print("kaydını görmek istediğiniz öğrenci ismini girin...:");
     String ogrenciIsmi=tarayici.nextLine();
-    System.out.println("girmiş olduğunuz öğrenci ismi...:"+ogrenciIsmi);
 
     for (Ogrenci gecici : ogrenciler){
 
@@ -111,3 +112,26 @@ void ogrenciKaydiniListele(){
     }//end if
 
 }//end ogrenciKaydiniListele
+
+
+void ogrenciKaydiSil(){
+    if (ogrenciler.isEmpty()) {
+        System.out.println("Öğrenci kaydı boş... silinecek herhangi kayıtlı öğrenci yok");
+        return;
+    }//end if
+
+    System.out.print("kaydının silmek istediğiniz öğrenci ismini girin...:");
+    String ogrenciIsmi = tarayici.nextLine();
+    System.out.println("silmek istediğiniz öğrenci...:"+ogrenciIsmi);
+
+    // removeIf true dönerse listeden eleman silinmiştir
+    boolean kayitSilindimi = ogrenciler.removeIf(o -> o.isim.equalsIgnoreCase(ogrenciIsmi));
+    if (kayitSilindimi==true){
+        System.out.println(ogrenciIsmi+" isimli öğrenci kaydı başarılı bir şekilde silindi");
+    }else {
+        System.out.println(ogrenciIsmi+" isimli öğrenci kayıtdı  silinemedi");
+        System.out.println("öğrenci ismini yanlış yazmış olabilirsiniz tüm öğrenci kayıtlarını listeletip \n öğrencinin sistemde kayıtlı olup olmadığını kontrol edin ...");
+    }
+
+
+}//end ogrenciKaydiSil

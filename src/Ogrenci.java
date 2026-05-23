@@ -1,9 +1,9 @@
 public class Ogrenci {
-    int Not1;
-    int Not2;
-    int Not3;
-    int Ortalama;
-    String isim;
+   public int Not1;
+   public int Not2;
+   public int Not3;
+   public int Ortalama;
+   public String isim;
 
     public Ogrenci(int not1, int not2, int not3, String isim) {
         Not1 = not1;
